@@ -26,7 +26,7 @@
 
 
 
-
+/* Old
 &i2c0 {
     status = "okay";
     ssd1306: ssd1306@3c {
@@ -41,6 +41,23 @@
         com-invdir;
         prechargep = <0xF1>;
         multiplex-ratio = <63>;
+    };
+};
+*/
+&pro_micro_i2c {
+    status = "okay";
+
+    oled: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        width = <128>;
+        height = <64>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <63>;
+        prechargep = <0xF1>;
+        /delete-property/ segment-remap;
     };
 };
 
@@ -171,15 +188,15 @@
 
         layer_2 {
             bindings = <
-&kp ESC   &trans    &trans    &trans    &trans    &trans                                &trans    &trans    &trans    &trans    &trans    &trans
-&kp TAB   &trans    &trans    &trans    &trans    &trans                                &trans    &trans    &trans    &trans    &trans    &trans
-&kp LSHFT &trans    &trans    &trans    &trans    &trans    &trans            &trans    &trans    &trans    &trans    &trans    &trans    &trans
-&kp LCTRL &trans    &trans    &trans    &trans    &trans    &trans            &trans    &trans    &trans    &trans    &trans    &trans    &trans
-                              &kp LALT  &kp BSPC  &mo 3     &kp SPACE         &kp ENTER &mo 3     &kp RSHIFT &kp LEFT_GUI
+&kp ESC   &kp DLLR     &kp AT      &kp HASH        &kp AMPS       &trans                                   &trans       &trans              &trans        &trans       &trans       &trans
+&kp TAB   &kp LBRC     &kp RBRC    &kp LPAR        &kp RPAR       &kp CARET                                &kp SLASH    &kp SINGLE_QUOTE    &kp DQT       &kp GRAVE    &kp TILDE    &trans
+&kp LSHFT &kp FSLH     &kp STAR    &kp KP_MINUS    &kp KP_PLUS    &kp EQUAL    &trans            &trans    &kp PIPE     &kp COMMA           &kp PERIOD    &kp QMARK    &kp EXCL     &kp UNDER
+&kp LCTRL &kp LT       &kp GT      &kp LBKT        &kp RBKT       &kp PERCENT  &trans            &trans    &kp BSLH     &kp COLON           &kp SEMI      &trans       &trans       &trans
+                           &kp LALT  &kp BSPC   &mo 3                          &kp SPACE         &kp ENTER         &mo 3     &kp RSHIFT &kp LEFT_GUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
-        };
+        };  
 
 
         layer_3 {
