@@ -117,16 +117,6 @@
 //----------------------------------------------------------------
 
 / {
-    combos {
-        compatible = "zmk,combos";
-        combo_dsklg {
-            timeout-ms = <100>;
-            key-positions = <24 52>;
-            layers = <0>;
-            bindings = <&kp LGUI>;
-        };
-    };
-
     behaviors {
         fofunc: four_ffour {
             compatible = "zmk,behavior-mod-morph";
